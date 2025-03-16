@@ -1,0 +1,593 @@
+/* Reset and basic styles (keep these) */
+body, h1, h2, p, button, a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+}
+
+:root {
+    /* --- Generic Color Palette - Golden Hour Glow --- */
+    --main: #a89c8fcc;       /* Muted Warm Beige - Headings, Accents */
+    --secondary: #f8f6f2;       /* Warm Off-White - Secondary Accents, Content Backgrounds */
+    --cover-text: #f8f9fa;       /* Off-White - Text on Dark Backgrounds */
+    --time-line: #a89c8f98;       /* Pale Warm Beige - Timeline Lines, Dividers */
+    --dot: #c4b5a4;       /* Light Gold Beige - Timeline Dots, Highlights */
+    --hover: rgba(168, 156, 143, 0.5);/* Translucent Warm Beige - Hover Effects */
+    --selected-bar: #a89c8f9b;
+
+    /* Extras 
+    --color-8: rgba(255, 255, 255, 0);
+    --color-9: #555;             (Previously dark-grey-text) 
+    --color-10: #333;           (Previously content-text) 
+    --color-11: rgb(232, 230, 229);/* (Previously cover-text-color) */
+
+    /* --- Semantic Color Usage Definitions (Using Generic Colors) --- */
+    --nav-button-color: var(none);         /* (Now Transparent) */
+    --nav-button-hover-color: var(--hover);    /* Nav Button Hover Background (Light Gold Translucent) */
+    --nav-button-selected-color: var(--selected-bar); 
+    --nav-button-selected-text-color: var(--cover-text); /* Nav Button Selected Text Color (Pleasant White) */
+    --nav-button-text-color: var(--secondary);     /* Nav Button Text Color (Olive Green - or color-1 now) */
+    --main-text-color: var(--main);           /* Main Text Color for Sections (Dark Grey) */
+    --cover-text-color-override: var(--secondary); /* Text Color for Cover Section (Pleasant White) */
+    --section-heading-color: var(--main);        /* Color for Section Headings (Olive Green) */
+    --timeline-line-color: var(--time-line);          /* Color for Timeline Line (Light Grey) */
+    --timeline-dot-color: var(--dot);           /* Color for Timeline Dots (Olive Green) */
+}
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: var(--main-text-color);                  /* Using semantic main text color */
+    background-color: var(--secondary);             /* Using semantic secondary color */
+}
+
+/* Header Styles */
+header {
+    padding: 20px 30px;
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8em;
+    font-weight: normal;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+    margin-bottom: 10px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95em;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+    padding: 8px 0;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active-nav {
+    color: var(--nav-button-selected-color);
+}
+
+.nav-link.active-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--section-heading-color); /* Using semantic section heading color */
+}
+
+
+.lang-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85em;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--nav-button-text-color);           /* Still using section heading color for button text */
+    background-color: var(--nav-button-color);     /* Using semantic nav button default color */
+}
+
+.lang-btn:hover {   
+    color: var(--nav-button-hover-color);
+    background-color: var(--nav-button-selected-color);
+}
+
+.lang-btn.active {
+     /* Using semantic nav button selected color */
+    color: var(--nav-button-selected-text-color);
+    background-color: var(--nav-button-selected-color);
+    font-weight: bold;
+}
+
+#cover-photo {
+    height: 500px;
+    /* background-image: url('../img/coverPhoto.jpeg');  REMOVED - Now in ::before */
+    /* filter: grayscale(100%); REMOVED - Now in ::before */
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: top;
+    text-align: center;
+    color: var(--cover-text-color-override);
+    text-shadow: 2px 2px 4px #000000;
+    position: relative; /* Needed for pseudo-element positioning */
+    overflow: hidden; /* Clip pseudo-element if needed */
+}
+
+#cover-photo::before { /* Background Image Pseudo-element (as before) */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/Placeholder-cover.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(0%);
+    z-index: -1;
+}
+
+#cover-photo::after { /* NEW: Fade Overlay Pseudo-element */
+    content: '';
+    position: absolute;
+    bottom: 0; /* Position at the bottom */
+    left: 0;
+    right: 0;
+    height: 50px; /* Adjust height of fade area as needed */
+    background: linear-gradient(to bottom, rgba(248, 249, 250, 0) 0%, var(--secondary) 100%); /* Fade from transparent to background color */
+    z-index: 0; /* Place overlay on top of background, behind content */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+
+
+.cover-content {
+    align-self: top;
+    margin-top: 0;
+    position: relative; /* Ensure content is above pseudo-elements */
+    z-index: 1; /* Ensure content is above pseudo-elements */
+}
+
+#cover-photo h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+#cover-photo p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+}
+
+
+/* Information Section */
+#information {
+    padding: 10px;
+    text-align: center;
+}
+
+#information h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+.info-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-content p {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15px;
+    color: var(--main-text-color);                  /* Using semantic main text color */
+}
+
+/* Countdown Section */
+#countdown-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-number {
+    font-size: 4em;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+/* Timeline Section */
+#timeline-section {
+    padding: 60px 30px;
+    text-align: center;
+}
+
+#timeline-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5em;
+    font-weight: normal;
+    margin-bottom: 50px;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--timeline-line-color);   /* Using semantic timeline line color */
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    width: 40%;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    padding-right: 30px;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 30px;
+    text-align: left;
+}
+
+.timeline-time {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    color: var(--main-text-color);                  /* Using semantic main text color */
+    margin-bottom: 8px;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background-color: var(--timeline-dot-color);    /* Using semantic timeline dot color */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.timeline-icon i {
+    color: var(--pleasant-white); /* White color - no variable needed, it's constant */
+    font-size: 0.7em;
+}
+
+.timeline-content {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    color: var(--content-text);                 /* Using semantic content text color */
+    line-height: 1.5;
+}
+
+/* --- NEW SECTIONS STYLES --- */
+.text-section, .image-section, .image-gallery-section {
+    padding: 40px;
+    text-align: center;
+}
+
+.text-section h2, .image-section h2, .image-gallery-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2em;
+    font-weight: normal;
+    margin-bottom: 20px;
+    color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+.text-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.7;
+    color: var(--main-text-color);                  /* Using semantic main text color */
+}
+
+.image-content {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.gallery-image {
+    flex: 1 1 250px;
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.gallery-image:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Media Queries for Desktop Devices (Screens wider than 768px) --- */
+@media screen and (min-width: 769px) {
+    .text-image-pair {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    .text-image-pair > section {
+        width: 48%;
+        text-align: left;
+    }
+
+    .reverse-pair {
+        flex-direction: row-reverse;
+    }
+
+    .reverse-pair > section {
+        text-align: right;
+    }
+}
+
+/* --- Media Queries for Mobile Devices (Screens up to 768px wide) --- */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header {
+        padding: 15px 20px;
+        align-items: flex-start;
+        text-align: left;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        display: none;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        flex-direction: row;
+        gap: 5px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-link {
+        font-size: 0.9em;
+        padding: 6px 0;
+    }
+
+    .lang-btn {
+        font-size: 0.75em;
+        padding: 5px 8px;
+    }
+
+    .header-underline {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    #cover-photo {
+        height: 350px;
+        justify-content: center;
+        align-items: top;
+    }
+
+    .cover-content {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    #cover-photo h1 {
+        font-size: 2em;
+    }
+
+    #cover-photo h2 {
+        font-size: 1.5em;
+    }
+
+    #cover-photo p {
+        font-size: 1em;
+    }
+
+    #countdown-section {
+        padding: 30px 0;
+    }
+
+    .countdown-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .countdown-item {
+        width: auto;
+        margin-bottom: 15px;
+    }
+
+    .countdown-number {
+        font-size: 2.5em;
+    }
+
+    .countdown-label {
+        font-size: 0.5em;
+    }
+
+    #timeline-section {
+        padding: 40px 0px;
+    }
+
+    #timeline-section h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .timeline-container {
+        padding: 20px 0;
+    }
+
+    .timeline-container::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: auto;
+        right: auto;
+    }
+
+    .timeline-icon {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timeline-time {
+        font-size: 0.85em;
+        margin-bottom: 5px;
+    }
+
+    .timeline-content {
+        font-size: 0.95em;
+    }
+
+    #information {
+        padding: 30px 20px;
+    }
+
+    #information h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .info-content {
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+
+    .info-content p {
+        font-size: 0.95em;
+        margin-bottom: 10px;
+    }
+
+    .text-section, .image-section, .image-gallery-section {
+        padding: 30px 20px;
+    }
+
+    .text-section h2, .image-section h2, .image-gallery-section h2 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+
+    .text-content {
+        font-size: 0.95em;
+    }
+
+    .image-gallery {
+        gap: 15px;
+    }
+
+    .gallery-image {
+        flex-basis: calc(50% - 15px);
+        max-width: none;
+    }
+    
+}
