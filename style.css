@@ -137,7 +137,7 @@ nav {
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url('../img/Placeholder-cover.jpg');
+    background-image: url('img/Placeholder-cover.jpg');
     background-size: cover;
     background-position: center;
     filter: grayscale(0%);
