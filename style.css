@@ -593,30 +593,30 @@ nav {
 }
 
 /* Style for text blocks */
-#block1, #block2, #block3 {
+#ourStory, #toastmasters, #weddingTraditions, #qa {
     text-align: justify; /* Justify text */
     line-height: 1.3; /* Improve readability */
-    /* margin-bottom: 20px; Add spacing between blocks */
     padding: 10px 20px; /* Add padding inside the blocks */
     word-wrap: break-word; /* Ensure proper wrapping */
     overflow-wrap: break-word; /* Handle long words */
     /* background-color: #f9f9f9; Optional: Add a light background for better contrast */
     /* border-radius: 5px; Optional: Add rounded corners */
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Optional: Add a subtle shadow */
-  }
-  #block1 p:empty, #block2 p:empty, #block3 p:empty {
-    margin-bottom: 20px; /* Add extra spacing for blank rows */
-  }
+}
 
-  a {
+#ourStory p:empty, #toastmasters p:empty, #weddingTraditions p:empty, #qa p:empty {
+    margin-bottom: 10px; /* Add extra spacing for blank rows */
+}
+
+a {
     color: #d19a7a; /* Warm Terracotta */
     text-decoration: underline;
-  }
-  
-  a:hover {
+}
+
+a:hover {
     color: #b17c5e; /* Muted Terracotta */
     text-decoration: none;
-  }
+}
 
 
 
@@ -727,9 +727,13 @@ nav {
     #scroll-sidebar {
       opacity: 1; /* Fully visible */
       visibility: visible; /* Fully visible */
+      pointer-events: auto; /* Allow interaction */
     }
   
     #sidebar-toggle {
       display: none; /* Hide toggle button on larger screens */
     }
+  }
+  html {
+    scroll-behavior: smooth;
   }

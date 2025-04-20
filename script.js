@@ -131,9 +131,30 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((data) => {
         // Update the blocks with the fetched content
-        renderBlock("block1", data.block1);
-        renderBlock("block2", data.block2);
-        renderBlock("block3", data.block3);
+        renderBlock("ourStory", data.ourStory);
+        renderBlock("toastmasters", data.toastmasters);
+        renderBlock("weddingTraditions", data.weddingTraditions);
+        renderBlock("qa", data.qa);
+
+        // Update the section titles dynamically
+        document.getElementById("title-ourStory").textContent =
+          data.titles.ourStory;
+        document.getElementById("title-toastmasters").textContent =
+          data.titles.toastmasters;
+        document.getElementById("title-weddingTraditions").textContent =
+          data.titles.weddingTraditions;
+        document.getElementById("title-qa").textContent = data.titles.qa;
+
+        // Update the sidebar button names dynamically
+        document.getElementById("nav-weddingDay").textContent =
+          data.titles.weddingDay;
+        document.getElementById("nav-ourStory").textContent =
+          data.titles.ourStory;
+        document.getElementById("nav-toastmasters").textContent =
+          data.titles.toastmasters;
+        document.getElementById("nav-weddingTraditions").textContent =
+          data.titles.weddingTraditions;
+        document.getElementById("nav-qa").textContent = data.titles.qa;
       })
       .catch((error) => {
         console.error("Error fetching language content:", error);
