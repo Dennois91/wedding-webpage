@@ -237,7 +237,7 @@ nav {
 
 /* Timeline Section */
 #timeline-section {
-    padding: 60px 30px;
+    padding: 10px 30px;
     text-align: center;
 }
 
@@ -390,7 +390,7 @@ nav {
         justify-content: space-between;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 40px;
+        padding: 10px;
     }
 
     .text-image-pair > section {
