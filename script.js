@@ -18,10 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
       coverParagraph: "We're Getting Married!",
       infoHeading: "Wedding Details",
       infoParagraphs: [
-        "Date: " + weddingDate.toDateString(),
+        "Date: October 19 2025",
         "Time: " + weddingTime,
         `Location: <a href="${saintSavaLink}" target="_blank" rel="noopener noreferrer">Saint Sava Temple</a>`,
-        "More details about the ceremony, reception, and other important information will be added here.",
       ],
       countdownDays: "Days",
       countdownHours: "Hours",
@@ -38,10 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
       coverParagraph: "Vi är så glada att fira med er!",
       infoHeading: "Bröllopsinformation",
       infoParagraphs: [
-        "Datum: " + weddingDate.toDateString(),
+        "Datum: Oktober 19 2025",
         "Tid: " + weddingTime,
         `Plats: <a href="${saintSavaLink}" target="_blank" rel="noopener noreferrer">Sankt Savas Kyrka</a>`,
-        "Mer information om vigseln, mottagningen och annan viktig information kommer att läggas till här.",
       ],
       countdownDays: "Dagar",
       countdownHours: "Timmar",
@@ -49,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       countdownSeconds: "Sekunder",
       timelineCeremony: "Vigselceremoni",
       timelineCocktail: "Cocktailtimme",
-      timelineLegals: "Legal Ceremony",
+      timelineLegals: "Borgelig vigsel",
       timelineParty: "Kvällsfest",
     },
     sr: {
@@ -58,10 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
       coverParagraph: "Veoma smo uzbuđeni što slavimo sa vama!",
       infoHeading: "Detalji Venčanja",
       infoParagraphs: [
-        "Datum: " + weddingDate.toDateString(),
+        "Date: Oktobar 19 2025",
         "Vreme: " + weddingTime,
         `Lokacija: <a href="${saintSavaLink}" target="_blank" rel="noopener noreferrer">Hram Svetog Save</a>`,
-        "Više detalja o ceremoniji, prijemu i drugim važnim informacijama biće dodato ovde.",
       ],
       countdownDays: "Dana",
       countdownHours: "Sati",
@@ -70,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       timelineCeremony: "Ceremonija Venčanja",
       timelineLunch: "Ručak Venčanja",
       timelineCocktail: "Koktel Sat",
-      timelineLegals: "Legal Ceremony",
+      timelineLegals: "Građanska Venčanja",
       timelineParty: "Večernja Zabava",
     },
   };
@@ -123,6 +120,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setLanguage(langCode) {
     currentLang = langCode;
+
+    // Fetch the JSON file for the selected language
+    fetch(`/information/${langCode}.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load content for language: ${langCode}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Update the blocks with the fetched content
+        renderBlock("block1", data.block1);
+        renderBlock("block2", data.block2);
+        renderBlock("block3", data.block3);
+      })
+      .catch((error) => {
+        console.error("Error fetching language content:", error);
+      });
+
     const currentTranslations = translations[langCode];
 
     if (!currentTranslations) {
@@ -184,4 +200,64 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setLanguage("en"); // Initialize to English
+});
+
+function renderBlock(blockId, content) {
+  const blockElement = document.getElementById(blockId);
+  if (blockElement) {
+    blockElement.innerHTML = content; // Render HTML content
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebarLinks = document.querySelectorAll("#scroll-sidebar a");
+
+  // Smooth scrolling
+  sidebarLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      // Scroll to the section
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  });
+
+  // Highlight active section
+  const sections = document.querySelectorAll("section");
+  window.addEventListener("scroll", () => {
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (window.scrollY >= sectionTop - sectionHeight / 3) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    sidebarLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").substring(1) === currentSection) {
+        link.classList.add("active");
+      }
+    });
+  });
+});
+
+const sidebar = document.getElementById("scroll-sidebar");
+const toggleButton = document.getElementById("sidebar-toggle");
+
+toggleButton.addEventListener("click", () => {
+  if (sidebar.classList.contains("hidden")) {
+    sidebar.classList.remove("hidden"); // Show sidebar
+    toggleButton.textContent = "✖"; // Update button text/icon
+  } else {
+    sidebar.classList.add("hidden"); // Hide sidebar
+    toggleButton.textContent = "☰"; // Update button text/icon
+  }
 });
