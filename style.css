@@ -686,7 +686,7 @@ a:hover {
 /* Responsive: Adjust sidebar for small screens */
 @media screen and (max-width: 768px) {
     #scroll-sidebar {
-      width: 70px; /* Make the sidebar narrower on small screens */
+      width: 95px; /* Make the sidebar narrower on small screens */
       right: 5px; /* Adjust position slightly */
       padding: 5px; /* Reduce padding */
       font-size: 0.8em; /* Reduce font size */
