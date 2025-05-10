@@ -1,4 +1,3 @@
-/* Reset and basic styles (keep these) */
 body, h1, h2, p, button, a {
     margin: 0;
     padding: 0;
@@ -11,27 +10,17 @@ body, h1, h2, p, button, a {
 }
 
 :root {
-    /* --- Generic Color Palette - Golden Hour Glow --- */
     --main: #988d81;       /* Muted Warm Beige - Headings, Accents */
     --secondary: #f8f6f2;       /* Warm Off-White - Secondary Accents, Content Backgrounds */
     --cover-text: #f8f9fa;       /* Off-White - Text on Dark Backgrounds */
     --time-line: #a89c8f98;       /* Pale Warm Beige - Timeline Lines, Dividers */
     --dot: #c4b5a4;       /* Light Gold Beige - Timeline Dots, Highlights */
-    --hover: rgba(168, 156, 143, 0.5);/* Translucent Warm Beige - Hover Effects */
+    --hover: rgba(237, 132, 20, 0.5);/* Translucent Warm Beige - Hover Effects */
     --selected-bar: #a89c8f9b;
 
-    /* Extras 
-    --color-8: rgba(255, 255, 255, 0);
-    --color-9: #555;             (Previously dark-grey-text) 
-    --color-10: #333;           (Previously content-text) 
-    --color-11: rgb(232, 230, 229);/* (Previously cover-text-color) */
-
     /* --- Semantic Color Usage Definitions (Using Generic Colors) --- */
-    --nav-button-color: var(none);         /* (Now Transparent) */
-    --nav-button-hover-color: var(--hover);    /* Nav Button Hover Background (Light Gold Translucent) */
-    --nav-button-selected-color: var(--selected-bar); 
-    --nav-button-selected-text-color: var(--cover-text); /* Nav Button Selected Text Color (Pleasant White) */
-    --nav-button-text-color: var(--secondary);     /* Nav Button Text Color (Olive Green - or color-1 now) */
+    --lang-button-hover-background-color: var(--hover);    /* Nav Button Hover Background (Light Gold Translucent) */
+    --lang-button-text-color: var(--secondary);     /* Nav Button Text Color (Olive Green - or color-1 now) */
     --main-text-color: var(--main);           /* Main Text Color for Sections (Dark Grey) */
     --cover-text-color-override: var(--secondary); /* Text Color for Cover Section (Pleasant White) */
     --section-heading-color: var(--main);        /* Color for Section Headings (Olive Green) */
@@ -62,35 +51,6 @@ header {
     margin-bottom: 10px;
 }
 
-nav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95em;
-    color: var(--section-heading-color);           /* Using semantic section heading color */
-    padding: 8px 0;
-    position: relative;
-}
-
-.nav-link:hover, .nav-link.active-nav {
-    color: var(--nav-button-selected-color);
-}
-
-.nav-link.active-nav::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--section-heading-color); /* Using semantic section heading color */
-}
-
-
 .lang-btn {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85em;
@@ -99,20 +59,13 @@ nav {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    color: var(--nav-button-text-color);           /* Still using section heading color for button text */
-    background-color: var(--nav-button-color);     /* Using semantic nav button default color */
+    color: var(--lang-button-text-color);           
+    background-color: var(--nav-button-color);    
 }
  
 .lang-btn:hover {   
-    color: var(--nav-button-hover-color);
-    background-color: var(--nav-button-selected-color);
-}
-
-.lang-btn.active {
-     /* Using semantic nav button selected color */
-    color: var(--nav-button-selected-text-color);
-    background-color: var(--nav-button-selected-color);
-    font-weight: bold;
+    color: var(--lang-button-text-color);
+    background-color: var(--lang-button-hover-background-color);
 }
 
 #cover-photo {
@@ -130,18 +83,31 @@ nav {
     overflow: hidden; /* Clip pseudo-element if needed */
 }
 
-#cover-photo::before { /* Background Image Pseudo-element (as before) */
+#cover-photo::before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url('img/Placeholder-cover.jpg');
     background-size: cover;
     background-position: center;
     filter: grayscale(0%);
     z-index: -1;
+}
+
+/* Desktop Image */
+@media screen and (min-width: 769px) {
+    #cover-photo::before {
+        background-image: url('img/banner/desktop.webp');
+    }
+}
+
+/* Mobile Image */
+@media screen and (max-width: 768px) {
+    #cover-photo::before {
+        background-image: url('img/banner/mobile.webp');
+    }
 }
 
 #cover-photo::after { /* NEW: Fade Overlay Pseudo-element */
@@ -173,32 +139,6 @@ nav {
 #cover-photo p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1em;
-}
-
-
-/* Information Section */
-#information {
-    padding: 10px;
-    text-align: center;
-}
-
-#information h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2em;
-    font-weight: normal;
-    margin-bottom: 20px;
-    color: var(--section-heading-color);           /* Using semantic section heading color */
-}
-
-.info-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.info-content p {
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 15px;
-    color: var(--main-text-color);                  /* Using semantic main text color */
 }
 
 /* Countdown Section */
@@ -599,9 +539,6 @@ nav {
     padding: 10px 20px; /* Add padding inside the blocks */
     word-wrap: break-word; /* Ensure proper wrapping */
     overflow-wrap: break-word; /* Handle long words */
-    /* background-color: #f9f9f9; Optional: Add a light background for better contrast */
-    /* border-radius: 5px; Optional: Add rounded corners */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Optional: Add a subtle shadow */
 }
 
 #ourStory p:empty, #toastmasters p:empty, #weddingTraditions p:empty, #qa p:empty {

@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   let currentLang = "en";
 
-  const weddingDate = new Date("October 19, 2025 00:00:00"); 
-  const weddingTime = "12:00"; 
+  const weddingDate = new Date("October 19, 2025 00:00:00");
+  const weddingTime = "12:00";
   const saintSavaLink =
     "https://www.google.com/maps/place/The+Temple+of+Saint+Sava/@44.7980938,20.466963,16.96z/data=!4m6!3m5!1s0x475a700ca7258e8f:0xbe11391a6fc0344c!8m2!3d44.7981382!4d20.4690468!16zL20vMDNucXNi?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D"; // URL for Saint Sava Church
 
@@ -245,27 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
         behavior: "smooth",
         block: "start",
       });
-    });
-  });
-
-  // Highlight active section
-  const sections = document.querySelectorAll("section");
-  window.addEventListener("scroll", () => {
-    let currentSection = "";
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (window.scrollY >= sectionTop - sectionHeight / 3) {
-        currentSection = section.getAttribute("id");
-      }
-    });
-
-    sidebarLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href").substring(1) === currentSection) {
-        link.classList.add("active");
-      }
     });
   });
 });
