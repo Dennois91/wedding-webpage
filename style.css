@@ -74,19 +74,16 @@ header {
     background-color: var(--hover);
   }
 
-#cover-photo {
+  #cover-photo {
     height: 500px;
-    /* background-image: url('../img/coverPhoto.jpeg');  REMOVED - Now in ::before */
-    /* filter: grayscale(100%); REMOVED - Now in ::before */
     background-size: cover;
     background-position: center;
-    justify-content: center;
-    align-items: top;
-    text-align: center;
-    color: var(--cover-text-color-override);
-    text-shadow: 2px 2px 4px #000000;
-    position: relative; /* Needed for pseudo-element positioning */
-    overflow: hidden; /* Clip pseudo-element if needed */
+    position: relative;
+    overflow: hidden;
+}
+
+#cover-photo.lazy-loaded {
+    transition: background-image 0.5s ease-in-out; 
 }
 
 #cover-photo::before {

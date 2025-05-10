@@ -22,6 +22,32 @@ document.addEventListener("DOMContentLoaded", () => {
     infoParagraphs: document.querySelectorAll("#information .info-content p"),
     timelineContents: document.querySelectorAll(".timeline-content"),
   };
+  const coverPhoto = document.getElementById("cover-photo");
+
+  // Function to load the background image
+  function loadCoverPhoto() {
+    const isMobile = window.innerWidth <= 768;
+    const bgImage = isMobile
+      ? coverPhoto.getAttribute("data-bg-mobile")
+      : coverPhoto.getAttribute("data-bg-desktop");
+
+    if (bgImage) {
+      coverPhoto.style.backgroundImage = `url('${bgImage}')`;
+      coverPhoto.classList.add("lazy-loaded"); // Optional: Add a class for styling
+    }
+  }
+
+  // Use IntersectionObserver for lazy loading
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadCoverPhoto();
+        observer.unobserve(coverPhoto); // Stop observing once loaded
+      }
+    });
+  });
+
+  observer.observe(coverPhoto);
 
   // === GLOBAL STATE ===
   let currentLang = "en";
