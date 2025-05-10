@@ -16,11 +16,12 @@ body, h1, h2, p, button, a {
     --time-line: #a89c8f98;       /* Pale Warm Beige - Timeline Lines, Dividers */
     --dot: #c4b5a4;       /* Light Gold Beige - Timeline Dots, Highlights */
     --hover: rgba(237, 132, 20, 0.5);/* Translucent Warm Beige - Hover Effects */
-    --selected-bar: #a89c8f9b;
+    --lang-background: #a89c8f31;
 
     /* --- Semantic Color Usage Definitions (Using Generic Colors) --- */
     --lang-button-hover-background-color: var(--hover);    /* Nav Button Hover Background (Light Gold Translucent) */
     --lang-button-text-color: var(--secondary);     /* Nav Button Text Color (Olive Green - or color-1 now) */
+    --lang-button-background-color: var(--lang-background);
     --main-text-color: var(--main);           /* Main Text Color for Sections (Dark Grey) */
     --cover-text-color-override: var(--secondary); /* Text Color for Cover Section (Pleasant White) */
     --section-heading-color: var(--main);        /* Color for Section Headings (Olive Green) */
@@ -60,7 +61,7 @@ header {
     cursor: pointer;
     border-radius: 5px;
     color: var(--lang-button-text-color);           
-    background-color: var(--nav-button-color);    
+    background-color: var(--lang-button-background-color);    
 }
  
 .lang-btn:hover {   
@@ -162,7 +163,7 @@ header {
 }
 
 .countdown-number {
-    font-size: 4em;
+    font-size: 1.5em;
     font-weight: normal;
     line-height: 1;
 }
@@ -173,6 +174,26 @@ header {
     letter-spacing: 0.1em;
     margin-top: 2px;
     color: var(--section-heading-color);           /* Using semantic section heading color */
+}
+
+#oficial-date-section {
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    text-align: center; /* Center the text inside the container */
+    padding: 0px; /* Optional: Add some padding for spacing */
+}
+
+.official-date-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.official-date-item {
+    font-family: 'Cormorant Garamond', serif; /* Optional: Add a font style */
+    font-size: 3.5em; /* Adjust font size */
+    color: var(--main-text-color); /* Use your site's main text color */
 }
 
 /* Timeline Section */
@@ -214,15 +235,17 @@ header {
 }
 
 .timeline-item:nth-child(odd) {
-    left: 0;
-    padding-right: 30px;
+    left: 50%; /* Align with the center line */
+    padding-right: 30px; /* Adjust padding for spacing */
     text-align: right;
+    transform: translateX(-100%); /* Shift the item to the left of the center line */
 }
 
 .timeline-item:nth-child(even) {
-    left: 50%;
-    padding-left: 30px;
+    left: 50%; /* Align with the center line */
+    padding-left: 30px; /* Adjust padding for spacing */
     text-align: left;
+    transform: translateX(0); /* No shift needed for items on the right */
 }
 
 .timeline-time {
@@ -232,20 +255,7 @@ header {
     margin-bottom: 8px;
 }
 
-.timeline-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 15px;
-    height: 15px;
-    background-color: var(--timeline-dot-color);    /* Using semantic timeline dot color */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
+
 
 .timeline-icon i {
     color: var(--pleasant-white); /* White color - no variable needed, it's constant */
