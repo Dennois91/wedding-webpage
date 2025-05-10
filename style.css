@@ -69,6 +69,11 @@ header {
     background-color: var(--lang-button-hover-background-color);
 }
 
+.lang-btn.active {
+    font-weight: bold;
+    background-color: var(--hover);
+  }
+
 #cover-photo {
     height: 500px;
     /* background-image: url('../img/coverPhoto.jpeg');  REMOVED - Now in ::before */

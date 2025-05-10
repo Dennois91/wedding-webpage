@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Start with English
-  setLanguage(currentLang);
+  setLanguage("en");
 
   // Countdown timer
   updateCountdown();
