@@ -31,8 +31,8 @@ body, h1, h2, p, button, a {
 body {
     font-family: sans-serif;
     line-height: 1.6;
-    color: var(--main-text-color);                  /* Using semantic main text color */
-    background-color: var(--secondary);             /* Using semantic secondary color */
+    color: var(--main-text-color);                  
+    background-color: var(--secondary);            
 }
 
 /* Header Styles */
@@ -269,6 +269,47 @@ header {
     font-size: 1em;
     color: var(--content-text);                 /* Using semantic content text color */
     line-height: 1.5;
+}
+
+/* Mobile Timeline Layout */
+@media screen and (max-width: 768px) {
+    .timeline-container {
+        max-width: 100%; /* Ensure the container fits within the viewport */
+        padding: 20px;
+    }
+
+    .timeline-container::before {
+        left: 50%; /* Keep the center line in the middle */
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        width: 100%; 
+        margin: 0 auto 30px auto; 
+        padding: 0 20px; 
+        text-align: center; 
+        box-sizing: border-box; 
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0; 
+        transform: none;
+    }
+
+    .timeline-icon {
+        left: 50%; /* Center the icon */
+        transform: translateX(-50%);
+    }
+
+    .timeline-time {
+        font-size: 0.85em; /* Adjust font size for mobile */
+        margin-bottom: 5px;
+    }
+
+    .timeline-content {
+        font-size: 0.95em; /* Adjust font size for readability */
+    }
 }
 
 /* --- NEW SECTIONS STYLES --- */
@@ -600,7 +641,7 @@ a:hover {
   
   #scroll-sidebar a {
     text-decoration: none;
-    color: var(--main); /* Use your site's color palette */
+    color: var(--main); 
     font-size: 0.85em;
     transition: color 0.3s ease;
     white-space: nowrap; /* Prevent text from wrapping */
@@ -613,7 +654,7 @@ a:hover {
   /* Highlight the active link */
   #scroll-sidebar a.active {
     font-weight: bold;
-    color: var(--dot); /* Highlight color */
+    color: var(--dot); 
   }
   
   /* Toggle button */
