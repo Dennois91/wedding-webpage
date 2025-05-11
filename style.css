@@ -72,7 +72,21 @@ header {
 .lang-btn.active {
     font-weight: bold;
     background-color: var(--hover);
-  }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        display: flex;
+        justify-content: flex;
+        gap: 5px;  
+        width: 100%; 
+    }
+
+    .lang-btn {
+        font-size: 0.75em; 
+        padding: 5px 8px;
+    }
+}
 
   #cover-photo {
     height: 500px;
