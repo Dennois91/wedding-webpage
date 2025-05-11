@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.getElementById("sidebar-toggle");
   const sidebarLinks = document.querySelectorAll("#scroll-sidebar a");
 
+  document.getElementById("email-button").addEventListener("click", () => {
+    const email = "ostojicfridstrom@gmail.com";
+    const subject = "RSVP - Wedding Invitation";
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+});
+
   const daysSpan = document.getElementById("days");
   const hoursSpan = document.getElementById("hours");
   const minutesSpan = document.getElementById("minutes");

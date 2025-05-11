@@ -52,6 +52,28 @@ header {
     margin-bottom: 10px;
 }
 
+.email-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85em;
+    padding: 8px 12px;
+    background-color: var(--lang-button-background-color); /* Default background color */
+    color: var(--lang-button-text-color); /* Default text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: none; /* Disable transitions */
+}
+
+.email-btn:hover,
+.email-btn:focus,
+.email-btn:active {
+    background-color: var(--lang-button-background-color); /* Keep the default background color */
+    color: var(--lang-button-text-color);
+    outline: none; 
+    box-shadow: none; 
+    transition: none; 
+}
+
 .lang-btn {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85em;
