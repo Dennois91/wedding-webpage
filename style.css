@@ -319,8 +319,8 @@ header {
     }
 
     .timeline-container::before {
-        left: 50%; /* Keep the center line in the middle */
-        transform: translateX(-50%);
+    content: none; /* Remove the vertical line for mobile */
+
     }
 
     .timeline-item {
@@ -338,7 +338,7 @@ header {
     }
 
     .timeline-icon {
-        left: 50%; /* Center the icon */
+        left: 50%; 
         transform: translateX(-50%);
     }
 
