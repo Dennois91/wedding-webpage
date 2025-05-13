@@ -291,8 +291,9 @@ header {
 
 .timeline-time {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
-    color: var(--main-text-color);                  /* Using semantic main text color */
+    font-size: 1.2em;
+    font-weight: bold; /* Added to make the text bold */
+    color: var(--main-text-color); /* Using semantic main text color */
     margin-bottom: 8px;
 }
 
@@ -314,7 +315,7 @@ header {
 @media screen and (max-width: 768px) {
     .timeline-container {
         max-width: 100%; /* Ensure the container fits within the viewport */
-        padding: 20px;
+        padding: 10px;
     }
 
     .timeline-container::before {
@@ -324,8 +325,8 @@ header {
 
     .timeline-item {
         width: 100%; 
-        margin: 0 auto 30px auto; 
-        padding: 0 20px; 
+        margin: 0 auto 20px auto; 
+        padding: 0 10px; 
         text-align: center; 
         box-sizing: border-box; 
     }
@@ -342,7 +343,7 @@ header {
     }
 
     .timeline-time {
-        font-size: 0.85em; /* Adjust font size for mobile */
+        font-size: 0.75em; /* Adjust font size for mobile */
         margin-bottom: 5px;
     }
 
