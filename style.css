@@ -319,8 +319,8 @@ header {
     }
 
     .timeline-container::before {
-    content: none; /* Remove the vertical line for mobile */
-
+        left: 50%; /* Keep the center line in the middle */
+        transform: translateX(-50%);
     }
 
     .timeline-item {
@@ -343,12 +343,12 @@ header {
     }
 
     .timeline-time {
-        font-size: 0.75em; /* Adjust font size for mobile */
+        font-size: 1.20em !important; /* Force the font size */
         margin-bottom: 5px;
     }
 
     .timeline-content {
-        font-size: 0.95em; /* Adjust font size for readability */
+        font-size: 0.85em !important; /* Force the font size */
     }
 }
 
